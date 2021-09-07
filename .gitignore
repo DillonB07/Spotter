@@ -1,5 +1,6 @@
 .env
-/node_modules
-/__pycache__
+*/node_modules
+*/__pycache__
 /venv
 /.vscode
+.dccache
