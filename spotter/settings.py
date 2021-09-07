@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'music_controller.urls'
+ROOT_URLCONF = 'spotter.urls'
 
 TEMPLATES = [
     {
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'music_controller.wsgi.application'
+WSGI_APPLICATION = 'spotter.wsgi.application'
 
 
 # Database
