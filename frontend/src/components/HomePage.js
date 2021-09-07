@@ -45,9 +45,10 @@ export default class HomePage extends Component {
             <Button color="primary" to="/join" component={Link}>
               Join a Room
             </Button>
-            // <Button color="tertiary" to="/info" component={Link}>
-            //   Info
-            // </Button>
+            {/*
+            <Button color="tertiary" to="/info" component={Link}>
+              Info
+            </Button>*/}
             <Button color="secondary" to="/create" component={Link}>
               Create a Room
             </Button>
