@@ -65,5 +65,7 @@ You cannot use the Shuffle or Repeat buttons. These are for the host only to use
 ![Guest window](images/guestWindow.png)
 
 Repl: https://replit.com/@DillonB07/Spotter
+
 GitHub: https://github.com/dbarnes18/Spotter
+
 Website: https://spotter.dillonb07.repl.co
