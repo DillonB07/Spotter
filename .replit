@@ -1,2 +1,2 @@
 language = "python3"
-run = "clear && python manage.py runserver 0.0.0.0:3000"
+run = "clear && cd frontend && npm run build && cd .. && python manage.py runserver 0.0.0.0:3000"
