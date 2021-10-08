@@ -2,8 +2,6 @@
 
 ## Welcome to Spotter!
 
-*I really need a better name. Please create an issue on GitHub or post a comment on Replit if you have an idea of a better one.*
-
 Spotter is a website that you can connect to Spotify to control your music with an extremely simple, easy-to-use interface.
 
 Spotter lets you generate a room that you can invite other people to to control your music with you. With a voting system for skipping and rewinding songs, you could use it at a party so that the guests can control the music!
