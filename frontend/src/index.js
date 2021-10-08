@@ -71,3 +71,6 @@ function updateGradient() {
 }
 
 setInterval(updateGradient, 10);
+
+
+// Credit for background goes to Tech with Tim
