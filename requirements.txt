@@ -2,3 +2,4 @@ Django
 djangorestframework
 python-dotenv
 gunicorn
+requests
