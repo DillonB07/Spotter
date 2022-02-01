@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '0.0.0.0', '127.0.0.1', 'localhost',
     '54a2b4a6-eeff-4a08-967c-fb1f83accec6.id.repl.co',
-    'spotter.dillonb07.repl.co', 'spotifypartycontroller.dillonb07.repl.co'
+    'spotter.dillonb07.repl.co', 'spotifypartycontroller.dillonb07.repl.co',
+    'spotter.deelo.cloud'
 ]
 
 # Application definition
