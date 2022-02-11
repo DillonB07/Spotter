@@ -14,10 +14,7 @@ def get_user_tokens(session_id):
     """
     user_tokens = SpotifyToken.objects.filter(user=session_id)
 
-    if user_tokens.exists():
-        return user_tokens[0]
-    else:
-        return None
+    return user_tokens[0] if user_tokens.exists() else None
 
 
 def update_or_create_user_tokens(session_id, access_token, token_type, expires_in, refresh_token):
@@ -44,8 +41,7 @@ def is_spotify_authenticated(session_id):
     """
     Checks if Spotify is authenticated.
     """
-    tokens = get_user_tokens(session_id)
-    if tokens:
+    if tokens := get_user_tokens(session_id):
         expiry = tokens.expires_in
         if expiry <= timezone.now():
             refresh_spotify_token(session_id)
@@ -81,8 +77,11 @@ def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
     Sends a request to Spotify API
     """
     tokens = get_user_tokens(session_id)
-    headers = {'Content-Type': 'application/json',
-               'Authorization': "Bearer " + tokens.access_token}
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {tokens.access_token}',
+    }
+
 
     if post_:
         post(BASE_URL + endpoint, headers=headers)
@@ -132,10 +131,9 @@ def song_context(session_id):
     """
     Get Song context
     """
-    response = execute_spotify_api_request(session_id, "player")
     # print(f'\n\n\n\n{response}\n\n\n\n\n')
 
-    return response
+    return execute_spotify_api_request(session_id, "player")
 
 
 def is_shuffled(session_id):
@@ -145,9 +143,7 @@ def is_shuffled(session_id):
 
     response = song_context(session_id)
 
-    is_shuffled = response.get('shuffle_state')
-
-    return is_shuffled
+    return response.get('shuffle_state')
 
 
 def is_repeating(session_id):
@@ -157,17 +153,14 @@ def is_repeating(session_id):
 
     response = song_context(session_id)
 
-    is_repeating = response.get('repeat_state')
-
-    return is_repeating
+    return response.get('repeat_state')
 
 
 def shuffle_song(session_id):
     """
     Toggles shuffle for Spotify
     """
-    shuffle_state = is_shuffled(session_id)
-    if shuffle_state:
+    if shuffle_state := is_shuffled(session_id):
         return execute_spotify_api_request(session_id, "player/shuffle?state=false", put_=True)
     else:
         return execute_spotify_api_request(session_id, "player/shuffle?state=true", put_=True)
@@ -192,8 +185,7 @@ def get_volume(session_id):
     Get current volume
     """
     response = song_context(session_id)
-    volume_percent = response.get('volume_percent')
-    return volume_percent
+    return response.get('volume_percent')
 
 
 def increase_volume(session_id):
@@ -203,7 +195,10 @@ def increase_volume(session_id):
     volume_percent = get_volume(session_id)
     volume_percent += 1
     if volume_percent == 101:
-        return execute_spotify_api_request(session_id, f"player/volume?volume_percent=100")
+        return execute_spotify_api_request(
+            session_id, 'player/volume?volume_percent=100'
+        )
+
     else:
         return execute_spotify_api_request(session_id, f"player/volume?volume_percent={volume_percent}")
 
@@ -215,6 +210,9 @@ def decrease_volume(session_id):
     volume_percent = get_volume(session_id)
     volume_percent += 1
     if volume_percent == -1:
-        return execute_spotify_api_request(session_id, f"player/volume?volume_percent=0")
+        return execute_spotify_api_request(
+            session_id, 'player/volume?volume_percent=0'
+        )
+
     else:
         return execute_spotify_api_request(session_id, f"player/volume?volume_percent={volume_percent}")
