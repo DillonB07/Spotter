@@ -6,7 +6,7 @@ authors = ["DillonB07 <<>>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-Django = "^3.2.12"
+Django = "^3.2.17"
 djangorestframework = "^3.12.4"
 python-dotenv = "^0.19.0"
 gunicorn = "^20.1.0"
